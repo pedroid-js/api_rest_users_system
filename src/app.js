@@ -13,7 +13,6 @@ app.use(bodyParser.json());
 
 // routes 
 app.use('/api/users', require('./routes/users'));
-app.use('/api/notes', require('./routes/notes'));
 app.use('/api/login', require('./routes/login'));
 app.use('/api/signup', require('./routes/signup'));
 
