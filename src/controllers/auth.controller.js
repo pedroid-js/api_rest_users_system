@@ -39,18 +39,4 @@ authCrl.signup = async (req, res) => {
     }
 }
 
-// router.get('/me', (req, res, next) => {
-//     const token = req.headers['x-access-token']
-//     if (!token) {
-//         return res.status(401).json({
-//             auth: false,
-//             message: 'No token provided'
-//         })
-//     }
-
-//     const decoded = jwt.verify(token, process.env.API_SECRET)
-
-//     console.log('decoded');
-// })
-
 module.exports = authCrl

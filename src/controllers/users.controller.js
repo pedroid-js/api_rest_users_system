@@ -1,13 +1,23 @@
 const usersCtrl = {};
 
 const User = require('../models/User');
+const verifyToken = require('./verifyToken');
 
-usersCtrl.getUsers = async (req, res) => {
-    const user = await User.find();
-    res.json(user);
+usersCtrl.getUsers = verifyToken, async (req, res) => {
+    const users = await User.find();
+    res.json({ auth: true, users: users});
 };
 
-usersCtrl.deleteUser = async (req, res) => {
+usersCtrl.profile = verifyToken, async (req, res) => {
+    const user = await User.findById(req.userId)
+    if (!user) {
+        return res.status(404).send('No user found')
+    }
+
+    res.json(user)
+}
+
+usersCtrl.deleteUser = verifyToken, async (req, res) => {
     try {
         await User.findByIdAndDelete(req.params.id);
         res.json('User deleted');
